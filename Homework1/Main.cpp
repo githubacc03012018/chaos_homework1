@@ -71,8 +71,15 @@ int CountNodes(Node* node) {
 	return count;
 }
 
-int main() {
-	auto doc = LoadDocument("tree1.json");
+int main(int argc, char* argv[]) {
+	if (argc != 2) {
+		std::cerr << "How to use: " << argv[0] << " <jsonFile_path>" << "\n";
+		return 1;
+	}
+
+	const char* jsonFilePath = argv[1];
+	
+	auto doc = LoadDocument(jsonFilePath);
 	Node* root = CreateTreeFromJson(doc);
 
 	std::unordered_set<int> diffs;
